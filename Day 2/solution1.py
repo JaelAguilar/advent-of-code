@@ -16,8 +16,3 @@ for line in inputText:
             points+=6
 
 print(points)
-
-# WRONG
-# 19603 high
-# 10105 low
-# 7273 low
