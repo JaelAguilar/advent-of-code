@@ -26,10 +26,4 @@ for row in range(grid.shape[0]):
             scenicScore*=temp_s
         maxScenic=max(scenicScore,maxScenic)
         
-            
 print(maxScenic)
-
-
-
-
-
