@@ -1,25 +1,25 @@
+import numpy as np
 inputText=open("Day 8//input.txt","r")
-gridTransverse=[]
-probablyRight=[]
 count=0
+grid=np.array([])
 
-i=0
+#Creating array
+arrayLength=0
 for line in inputText:
+    arrayLength=len(line)-1
     for j in range(len(line)-1):
-        try:
-            gridTransverse[j].append(line[j])
-        except:
-            gridTransverse.append([]) 
-            gridTransverse[j].append(line[j])       
-        if (max(line[:j+1])==line[j] and line[j] not in line[:j]) or (max(line[j:])==line[j] and line[j] not in line[j+1:]) or j==0 or i==0 or j==len(line)-2 or i==len(line)-2:
-            count+=1
-        else:
-            probablyRight.append(str(i)+","+str(j))
-    i+=1
+        grid=np.append(grid,int(line[j]))
+grid=grid.reshape(arrayLength,arrayLength)
+print(grid.shape)
 
-for p in probablyRight:
-    j,i=[int(i) for i in p.split(',')]
-    test=gridTransverse[i][j]    
-    if (max(gridTransverse[i][:j+1])==test and test not in gridTransverse[i][:j])  or (max(gridTransverse[i][j:])==test and test not in gridTransverse[i][j+1:]):
-        count+=1
+# Analyze trees
+for row in range(arrayLength):
+    for column in range(arrayLength):
+        if row==0 or row==arrayLength-1 or column==0 or column==arrayLength-1:
+            count+=1
+            continue
+        for testArray in [grid[row,:column+1],grid[row,column:],grid[:row+1,column],grid[row:,column]]:
+            if max(testArray)==grid[row,column] and np.count_nonzero(testArray==grid[row,column])==1:
+                count+=1
+                break
 print(count)
