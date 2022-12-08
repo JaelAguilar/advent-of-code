@@ -12,35 +12,20 @@ grid=grid.reshape(arrayLength,arrayLength)
 
 
 maxScenic=0
-#i -> row
-#j -> column
-# Used brute force
 for row in range(grid.shape[0]):
     for column in range(len(grid[row])):
-        scenic=[0,0,0,0] #right,left,up,down
         currentTest=grid[row,column]
-        #Check right
-        for z in grid[row,:column][::-1]:
-            scenic[0]+=1
-            if z>=currentTest:break
-        #Check left
-        for z in grid[row,column+1:]:
-            scenic[1]+=1
-            if z>=currentTest:break
-        #Check up
-        for z in grid[:row,column][::-1]:
-            scenic[2]+=1
-            if z>=currentTest:break
-        #Check down
-        for z in grid[row+1:,column]:
-            scenic[3]+=1
-            if z>=currentTest:break
-            
-        #calculate scenic score
+        sc_index=0
         scenicScore=1
-        for i in scenic:
-            scenicScore*=i
+        
+        for arrayTest in [grid[row,:column][::-1],grid[row,column+1:],grid[:row,column][::-1],grid[row+1:,column]]: #Testing left, right, up, down
+            temp_s=0
+            for z in arrayTest:
+                temp_s+=1
+                if z>=currentTest:break
+            scenicScore*=temp_s
         maxScenic=max(scenicScore,maxScenic)
+        
             
 print(maxScenic)
 
