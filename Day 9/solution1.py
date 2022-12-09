@@ -23,7 +23,7 @@ for line in inputText:
         elif d=="U":H[0]-=1 #UP
         elif d=="D":H[0]+=1 #down
         T=getClose(H,T)
-        visited.append(','.join([str(j) for j in T]))
+        visited.append(','.join([str(j) for j in T])) #Originally I put this at the beginning of the loop, and I always got the answer wrong even though I was sure the logic was correct. I almost cried when I found the error in my code
         
 print("Total:",len(set(visited)))
 
