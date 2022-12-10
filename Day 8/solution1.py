@@ -1,6 +1,5 @@
 import numpy as np
 import math
-inputText=open("Day 8//input.txt","r")
 count=0
 grid=np.array([int(character) for line in open("Day 8//input.txt").read().split('\n') for character in line])
 
