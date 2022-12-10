@@ -1,14 +1,12 @@
 import numpy as np
+import math
 inputText=open("Day 8//input.txt","r")
 count=0
-grid=np.array([])
+grid=np.array([int(character) for line in open("Day 8//input.txt").read().split('\n') for character in line])
 
-arrayLength=0
-for line in inputText:
-    arrayLength=len(line)-1
-    for j in range(len(line)-1):
-        grid=np.append(grid,int(line[j]))
+arrayLength=int(math.sqrt(grid.shape[0]))
 grid=grid.reshape(arrayLength,arrayLength)
+
 
 for row in range(arrayLength):
     for column in range(arrayLength):
