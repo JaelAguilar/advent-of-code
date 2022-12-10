@@ -1,39 +1,27 @@
-inputText=open("Day 10//input.txt","r").read().split('\n')
+inputText=[line.split(' ') for line in open("Day 10//input.txt","r").read().split('\n')]
 
 cycles=0
 X=1
 CRT=[]
 passedCheck=[]
-
-def moveSignal(line):
-    if line!="noop":
-        dummy,move=line.split(' ')
-        move=int(move)
-        return move
     
 def drawSignal(sprite,X,CRT):
-    if sprite[1]%40==0:
+    if sprite%40==0:
         CRT.append('\n')
-    CRT.append('#' if X in [i%40 for i in sprite] else '.')
+    CRT.append('█' if X-1<= sprite%40 <=X+1 else ' ')
     return CRT
     
 for line in inputText:
-    sprite=[cycles+i for i in [-1,0,1]]
-    if line=="noop":
-        #Start cycle noop
-        CRT=drawSignal(sprite,X,CRT)
-        cycles+=1
-        #End cycle
-    else:
-        # Start first cycle addx
-        CRT=drawSignal(sprite,X,CRT)                                 
-        cycles+=1
-        # End cycle
+    # Start first cycle
+    CRT=drawSignal(cycles,X,CRT)                                 
+    cycles+=1
+    # End cycle
+    if line[0]=='addx':
         #Start second cycle addx
-        sprite=[cycles+i for i in [-1,0,1]]
-        CRT=drawSignal(sprite,X,CRT)
+        CRT=drawSignal(cycles,X,CRT)
         cycles+=1
         #End cycle
-        X+=moveSignal(line)
+        X+=int(line[1])
+    
     
 print(''.join(CRT))
