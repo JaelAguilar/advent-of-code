@@ -8,12 +8,11 @@ def createNode(letter,x,y,height=height,width=width,ascii=asciiValue):
     if y>0: neighbors.append(str(x)+':'+str(y-1))
     if x<width-1: neighbors.append(str(x+1)+':'+str(y))
     if y<height-1: neighbors.append(str(x)+':'+str(y+1))
-    distance=float('inf')
     try: 
         value=ascii.index(letter)
     except:
         value=ascii.index('a' if letter=='S' else 'z')
-    return{'neighbors':neighbors,'distance':distance,'value':value}
+    return{'neighbors':neighbors,'value':value}
     
 #Creation of graph
 graph={}
