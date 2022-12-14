@@ -15,31 +15,16 @@ for line in inputText:
                 rocks.append((x,y1))
 rocks=set(rocks)
 
-sandCount=1
-
 minimumHeight=max([i[1] for i in rocks])+1
-print(minimumHeight)
-
-x_count=1
-y=1
 
 sandPath=[(500,0)]
 path_index=0
-verticalIndex=1
 while True:
     x,y=sandPath[path_index]
     if y>=minimumHeight:break
     for a,b in ((x-1,y+1),(x,y+1),(x+1,y+1)):
         if (a,b) not in rocks and (a,b) not in sandPath:
-            #print(a,b)
             sandPath.append((a,b))
     path_index+=1
-    y+=1
         
-print(sandCount)
 print(len(set(sandPath)))
-print(set(sandPath))
-
-# WRONG
-# 31331 HIGH
-# 30924 HIGH
